@@ -8,6 +8,16 @@ def problem_check(prob):  # This function returns a boolean: return false if a c
             return False
     if prob.count('(') != prob.count(')'):
         return False
+    index_i = 0
+    for i in range(prob.count('(')):
+        index_i = prob.find("(", index_i + 1)
+        if index_i > 0 and not is_sym(prob[index_i - 1]):
+            return False
+    prev = False
+    for char in prob:
+        if is_sym(char) and prev and char != "-":
+            return False
+        prev = is_sym(char)
     return True
 
 
